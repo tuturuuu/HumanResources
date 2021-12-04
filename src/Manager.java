@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class Manager extends Staff implements ICalculator{
     private String chucDanh;
+    Scanner sc = new Scanner(System.in);
     public void displayInformation() {
         System.out.println("Ma nhan vien: " + super.getId());
         System.out.println("Ten nhan vien: " + super.getTen());
@@ -14,21 +17,18 @@ public class Manager extends Staff implements ICalculator{
     public Manager(int id, int tuoi, String ngayVaoLam, int soNgayNghiPhep, String ten, String boPhanLamViec, double heSoLuong, String chucDanh) {
         super(id, tuoi, ngayVaoLam, soNgayNghiPhep, ten, boPhanLamViec, heSoLuong);
         this.chucDanh = chucDanh;
+        checkChucDanh();
     }
 
-    public double calculateSalary(){
-        if(chucDanh.equalsIgnoreCase("Business Leader")){
-            return super.getHeSoLuong()*5000000 + 8000000;
-        }
-        else if(chucDanh.equalsIgnoreCase("Project Leader")){
-            return super.getHeSoLuong()*5000000 + 5000000;
-        }
-        else if(chucDanh.equalsIgnoreCase("Technical Leader")){
-            return super.getHeSoLuong()*5000000 + 6000000;
-        }
-        else{
-            System.out.println("Chuc danh khong co trong bo nho");
-            return 0;
+    public int calculateSalary(){
+        while(true) {
+            if (chucDanh.equalsIgnoreCase("Business Leader")) {
+                return (int) (super.getHeSoLuong() * 5000000 + 8000000);
+            } else if (chucDanh.equalsIgnoreCase("Project Leader")) {
+                return (int) (super.getHeSoLuong() * 5000000 + 5000000);
+            } else if (chucDanh.equalsIgnoreCase("Technical Leader")) {
+                return (int) (super.getHeSoLuong() * 5000000 + 6000000);
+            }
         }
     }
 
@@ -38,5 +38,22 @@ public class Manager extends Staff implements ICalculator{
 
     public void setChucDanh(String chucDanh) {
         this.chucDanh = chucDanh;
+        checkChucDanh();
+    }
+
+    private void checkChucDanh(){
+        while(true) {
+            if(chucDanh.equalsIgnoreCase("Business Leader")) {
+                break;
+            } else if (chucDanh.equalsIgnoreCase("Project Leader")) {
+                break;
+            } else if (chucDanh.equalsIgnoreCase("Technical Leader")) {
+                break;
+            } else {
+                System.out.println("Chuc danh khong co trong he thong");
+                System.out.println("Hay nhap lai chuc danh");
+                setChucDanh(sc.nextLine());
+            }
+        }
     }
 }

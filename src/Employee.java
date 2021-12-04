@@ -1,13 +1,17 @@
 public class Employee extends Staff implements ICalculator{
     private int gioLamThem;
 
+    public int getGioLamThem() {
+        return gioLamThem;
+    }
+
     public Employee(int id, int tuoi, String ngayVaoLam, int soNgayNghiPhep, String ten, String boPhanLamViec, double heSoLuong, int gioLamThem) {
         super(id, tuoi, ngayVaoLam, soNgayNghiPhep, ten, boPhanLamViec, heSoLuong);
         this.gioLamThem = gioLamThem;
     }
 
-    public double calculateSalary(){
-        return super.getHeSoLuong()*3000000+this.gioLamThem*200000;
+    public int calculateSalary(){
+        return (int) (super.getHeSoLuong()*3000000+this.gioLamThem*200000);
     }
 
     public void displayInformation(){

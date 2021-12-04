@@ -1,3 +1,3 @@
 interface ICalculator {
-        double calculateSalary();
+        int calculateSalary();
 }
